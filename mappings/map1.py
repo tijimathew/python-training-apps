@@ -33,6 +33,8 @@ for lt, ln, vel, vnam, vtyp in zip(lat, lon, vol_elev, vol_name, vol_type):
     iframe = folium.IFrame(html=html % (vnam, vnam, vtyp, str(vel)), width=300, height=200)
     fg.add_child(folium.CircleMarker(location=[lt, ln], radius=8, popup=folium.Popup(iframe), fill_color=color_producer(vel), color='grey', fill_opacity=0.7))
 
+fg.add_child(folium.GeoJson(data=(open('world.json', 'r', encoding='utf-8-sig').read())))
+
 map.add_child(fg)
 
 map.save("map_advanced_color.html")
