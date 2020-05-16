@@ -28,10 +28,10 @@ def color_producer(elevation):
 map = folium.Map(location=[lat[0], lon[0]], zoom_start=8, tiles="Stamen Terrain")
 
 fg = folium.FeatureGroup(name="My Map")
+
 for lt, ln, vel, vnam, vtyp in zip(lat, lon, vol_elev, vol_name, vol_type):
     iframe = folium.IFrame(html=html % (vnam, vnam, vtyp, str(vel)), width=300, height=200)
-    fg.add_child(folium.Marker(location=[lt, ln], popup=folium.Popup(iframe), icon=folium.Icon(color=color_producer(vel))))
-
+    fg.add_child(folium.Marker(location=[lt, ln], popup=folium.Popup(iframe), icon=folium.Icon(color=color_producer(vel), icon='glyphicon-star')))
 
 map.add_child(fg)
 
