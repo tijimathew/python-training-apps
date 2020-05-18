@@ -21,8 +21,19 @@ def insert(item, quantity, price):
     conn.commit()
     conn.close()
 
-create_table()
-insert("Coffee Cup", 5, 5.5)
+def update(item, quantity, price):
+    conn = sqlite3.connect("lite.db")
+    cur = conn.cursor()
+    cur.execute("UPDATE store SET quantity = ?, price = ? WHERE item = ?", (quantity, price, item))
+    conn.commit()
+    conn.close()
+
+def delete(item):
+    conn = sqlite3.connect("lite.db")
+    cur = conn.cursor()
+    cur.execute("DELETE FROM store WHERE item = ?", (item,))
+    conn.commit()
+    conn.close()
 
 def view():
     conn = sqlite3.connect("lite.db")
@@ -32,4 +43,7 @@ def view():
     conn.close()
     return rows
 
+
+print(view())
+update('Coffee Cup', 10, 11.5)
 print(view())
